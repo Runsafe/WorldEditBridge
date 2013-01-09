@@ -1,12 +1,8 @@
 package no.runsafe.worldeditbridge;
 
-import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.WorldEdit;
-import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-import com.sk89q.worldedit.regions.RegionSelector;
 import no.runsafe.framework.plugin.PluginResolver;
 import no.runsafe.framework.server.RunsafeLocation;
 import no.runsafe.framework.server.player.RunsafePlayer;
