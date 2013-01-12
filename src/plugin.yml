@@ -1,6 +1,6 @@
 name: WorldEditBridge
 main: no.runsafe.worldeditbridge.Plugin
-version: 1.0
+version: 1.0.@BUILD@
 authors: [mortenn]
 depend: [WorldEdit]
 description: Bridge to access WorldEdit from a Runsafe plugin
