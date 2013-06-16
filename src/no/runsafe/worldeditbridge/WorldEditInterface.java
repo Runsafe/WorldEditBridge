@@ -31,6 +31,7 @@ public class WorldEditInterface
 
 	public boolean regenerate(RunsafePlayer runsafePlayer, RunsafeLocation pos1, RunsafeLocation pos2)
 	{
+		EditSession editSession = worldEdit.createEditSession(runsafePlayer.getRawPlayer());
 		select(runsafePlayer, pos1, pos2);
 		Selection selection = worldEdit.getSelection(runsafePlayer.getRawPlayer());
 		Region region;
@@ -45,12 +46,11 @@ public class WorldEditInterface
 			console.logException(e);
 			return false;
 		}
-
-		EditSession editSession = worldEdit.createEditSession(runsafePlayer.getRawPlayer());
-//		Mask mask = editSession.getMask();
-//		editSession.setMask(null);
+		Mask mask = editSession.getMask();
+		editSession.setMask(null);
 		worldEdit.wrapPlayer(runsafePlayer.getRawPlayer()).getWorld().regenerate(region, editSession);
-//		editSession.setMask(mask);
+		editSession.setMask(mask);
+		worldEdit.remember(runsafePlayer.getRawPlayer(), editSession);
 		return true;
 	}
 
