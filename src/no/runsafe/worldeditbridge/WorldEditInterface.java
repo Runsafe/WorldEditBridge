@@ -32,29 +32,6 @@ public class WorldEditInterface
 	public boolean regenerate(RunsafePlayer runsafePlayer, RunsafeLocation pos1, RunsafeLocation pos2)
 	{
 		select(runsafePlayer, pos1, pos2);
-		/*LocalPlayer player = worldEdit.wrapPlayer(runsafePlayer.getRawPlayer());
-		LocalSession localSession = worldEdit.getSession(runsafePlayer.getRawPlayer());
-
-		Vector low = new Vector(pos1.getBlockX(), pos1.getBlockY(), pos1.getBlockZ());
-		Vector high = new Vector(pos2.getBlockX(), pos2.getBlockY(), pos2.getBlockZ());
-
-		RegionSelector selector = localSession.getRegionSelector(player.getWorld());
-		selector.explainPrimarySelection(player, localSession, low);
-		selector.explainSecondarySelection(player, localSession, high);
-
-		Region selection;
-		try
-		{
-			selection = selector.getRegion();
-			if (selection == null)
-				return false;
-		}
-		catch (IncompleteRegionException e)
-		{
-			console.logException(e);
-			return false;
-		}*/
-
 		Selection selection = worldEdit.getSelection(runsafePlayer.getRawPlayer());
 		Region region;
 		try
@@ -70,11 +47,10 @@ public class WorldEditInterface
 		}
 
 		EditSession editSession = worldEdit.createEditSession(runsafePlayer.getRawPlayer());
-		Mask mask = editSession.getMask();
-		editSession.setMask(null);
+//		Mask mask = editSession.getMask();
+//		editSession.setMask(null);
 		worldEdit.wrapPlayer(runsafePlayer.getRawPlayer()).getWorld().regenerate(region, editSession);
-		editSession.setMask(mask);
-
+//		editSession.setMask(mask);
 		return true;
 	}
 
