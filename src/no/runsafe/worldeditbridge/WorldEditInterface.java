@@ -1,11 +1,13 @@
 package no.runsafe.worldeditbridge;
 
-import com.sk89q.worldedit.*;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.IncompleteRegionException;
+import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
+import com.sk89q.worldedit.bukkit.selections.Selection;
 import com.sk89q.worldedit.masks.Mask;
 import com.sk89q.worldedit.regions.Region;
-import com.sk89q.worldedit.regions.RegionSelector;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.minecraft.RunsafeLocation;
 import no.runsafe.framework.minecraft.RunsafeServer;
@@ -29,7 +31,8 @@ public class WorldEditInterface
 
 	public boolean regenerate(RunsafePlayer runsafePlayer, RunsafeLocation pos1, RunsafeLocation pos2)
 	{
-		LocalPlayer player = worldEdit.wrapPlayer(runsafePlayer.getRawPlayer());
+		select(runsafePlayer, pos1, pos2);
+		/*LocalPlayer player = worldEdit.wrapPlayer(runsafePlayer.getRawPlayer());
 		LocalSession localSession = worldEdit.getSession(runsafePlayer.getRawPlayer());
 
 		Vector low = new Vector(pos1.getBlockX(), pos1.getBlockY(), pos1.getBlockZ());
@@ -50,12 +53,26 @@ public class WorldEditInterface
 		{
 			console.logException(e);
 			return false;
+		}*/
+
+		Selection selection = worldEdit.getSelection(runsafePlayer.getRawPlayer());
+		Region region;
+		try
+		{
+			region = selection.getRegionSelector().getRegion();
+			if (region == null)
+				return false;
+		}
+		catch (IncompleteRegionException e)
+		{
+			console.logException(e);
+			return false;
 		}
 
 		EditSession editSession = worldEdit.createEditSession(runsafePlayer.getRawPlayer());
 		Mask mask = editSession.getMask();
 		editSession.setMask(null);
-		player.getWorld().regenerate(selection, editSession);
+		worldEdit.wrapPlayer(runsafePlayer.getRawPlayer()).getWorld().regenerate(region, editSession);
 		editSession.setMask(mask);
 
 		return true;
