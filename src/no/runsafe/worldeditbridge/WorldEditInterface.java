@@ -42,7 +42,7 @@ public class WorldEditInterface
 		Region selection;
 		try
 		{
-			selection = localSession.getSelection(player.getWorld());
+			selection = selector.getRegion();
 			if (selection == null)
 				return false;
 		}
