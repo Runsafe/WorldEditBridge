@@ -29,7 +29,7 @@ public class WorldEditInterface
 		worldEdit.setSelection(player.getRawPlayer(), selection);
 	}
 
-	public boolean regenerate(RunsafePlayer runsafePlayer, RunsafeLocation pos1, RunsafeLocation pos2)
+	public boolean regenerate(RunsafePlayer runsafePlayer, RunsafeLocation pos1, RunsafeLocation pos2, boolean enableUndo)
 	{
 		EditSession editSession = worldEdit.createEditSession(runsafePlayer.getRawPlayer());
 		select(runsafePlayer, pos1, pos2);
@@ -50,7 +50,8 @@ public class WorldEditInterface
 		editSession.setMask(null);
 		worldEdit.wrapPlayer(runsafePlayer.getRawPlayer()).getWorld().regenerate(region, editSession);
 		editSession.setMask(mask);
-		worldEdit.remember(runsafePlayer.getRawPlayer(), editSession);
+		if (enableUndo)
+			worldEdit.remember(runsafePlayer.getRawPlayer(), editSession);
 		return true;
 	}
 
