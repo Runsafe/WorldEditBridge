@@ -3,6 +3,7 @@ package no.runsafe.worldeditbridge;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.bukkit.BukkitPlayer;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
@@ -48,10 +49,12 @@ public class WorldEditInterface
 		}
 		Mask mask = editSession.getMask();
 		editSession.setMask(null);
-		worldEdit.wrapPlayer(runsafePlayer.getRawPlayer()).getWorld().regenerate(region, editSession);
+		BukkitPlayer player = worldEdit.wrapPlayer(runsafePlayer.getRawPlayer());
+		player.getWorld().regenerate(region, editSession);
 		editSession.setMask(mask);
-		if (enableUndo)
-			worldEdit.remember(runsafePlayer.getRawPlayer(), editSession);
+		worldEdit.remember(runsafePlayer.getRawPlayer(), editSession);
+		if (!enableUndo)
+			worldEdit.getSession(runsafePlayer.getRawPlayer()).clearHistory();
 		return true;
 	}
 
