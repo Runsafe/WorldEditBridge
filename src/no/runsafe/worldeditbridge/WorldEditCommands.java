@@ -9,7 +9,6 @@ import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import com.sk89q.worldedit.masks.Mask;
 import com.sk89q.worldedit.regions.Region;
-import javafx.geometry.BoundingBox;
 import no.runsafe.framework.api.IOutput;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
@@ -34,7 +33,7 @@ public class WorldEditCommands implements WorldEditInterface
 		final CuboidSelection selection = new CuboidSelection((World)ObjectUnwrapper.convert(player.getWorld()), pt1, pt2);
 		worldEdit.setSelection((Player)ObjectUnwrapper.convert(player), selection);
 	}
-
+/*
 	@Override
 	public BoundingBox getSelection(IPlayer player)
 	{
@@ -45,7 +44,7 @@ public class WorldEditCommands implements WorldEditInterface
 			selection.getWidth(), selection.getHeight(), selection.getLength()
 		);
 	}
-
+*/
 	@Override
 	public boolean regenerate(IPlayer runsafePlayer, RunsafeLocation pos1, RunsafeLocation pos2, boolean enableUndo)
 	{
