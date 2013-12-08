@@ -11,17 +11,17 @@ import com.sk89q.worldedit.masks.Mask;
 import com.sk89q.worldedit.regions.Region;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IOutput;
+import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.player.IPlayer;
 import no.runsafe.framework.internal.wrapper.ObjectUnwrapper;
-import no.runsafe.framework.minecraft.RunsafeServer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class WorldEditCommands implements WorldEditInterface
 {
-	public WorldEditCommands(IOutput output)
+	public WorldEditCommands(IOutput output, IServer server)
 	{
-		worldEdit = RunsafeServer.Instance.getPlugin("WorldEdit");
+		worldEdit = server.getPlugin("WorldEdit");
 		console = output;
 	}
 
