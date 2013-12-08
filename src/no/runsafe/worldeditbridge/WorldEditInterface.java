@@ -1,11 +1,12 @@
 package no.runsafe.worldeditbridge;
 
+import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.player.IPlayer;
-import no.runsafe.framework.minecraft.RunsafeLocation;
 
 public interface WorldEditInterface
 {
-	void select(IPlayer player, RunsafeLocation pos1, RunsafeLocation pos2);
-//	BoundingBox getSelection(IPlayer player);
-	boolean regenerate(IPlayer runsafePlayer, RunsafeLocation pos1, RunsafeLocation pos2, boolean enableUndo);
+	void select(IPlayer player, ILocation pos1, ILocation pos2);
+
+	//	BoundingBox getSelection(IPlayer player);
+	boolean regenerate(IPlayer runsafePlayer, ILocation pos1, ILocation pos2, boolean enableUndo);
 }
