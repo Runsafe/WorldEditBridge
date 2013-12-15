@@ -7,6 +7,6 @@ public class Plugin extends RunsafePlugin
 	@Override
 	protected void PluginSetup()
 	{
-		exportAPI(WorldEditCommands.class);
+		exportAPI(getInstance(WorldEditCommands.class));
 	}
 }
