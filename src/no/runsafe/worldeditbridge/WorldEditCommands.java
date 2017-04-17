@@ -8,6 +8,7 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import com.sk89q.worldedit.regions.Region;
+import com.sk89q.worldedit.function.mask.Mask;
 import no.runsafe.framework.api.ILocation;
 import no.runsafe.framework.api.IServer;
 import no.runsafe.framework.api.log.IConsole;
@@ -64,8 +65,8 @@ public class WorldEditCommands implements WorldEditInterface
 			console.logException(e);
 			return false;
 		}
-		com.sk89q.worldedit.function.mask.Mask mask = editSession.getMask();
-		editSession.setMask((com.sk89q.worldedit.function.mask.Mask) null);
+		Mask mask = editSession.getMask();
+		editSession.setMask((Mask) null);
 		BukkitPlayer player = worldEdit.wrapPlayer(bukkitPlayer);
 		player.getWorld().regenerate(region, editSession);
 		editSession.setMask(mask);
